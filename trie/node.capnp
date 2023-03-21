@@ -45,12 +45,3 @@ struct TrieRootOrValue {
     }  
 }
 
-struct FreeBlock {
-    next @0 :UInt32;
-}
-
-struct Database {
-    firstFreeBlock @0 :FreeBlock;
-    nextUnallocatedBlock @1 :UInt32;
-    root @2 :TrieRootOrValue;
-}
