@@ -539,11 +539,11 @@ func (s ValueSegment) SetData(v []byte) error {
 	return capnp.Struct(s).SetData(0, v)
 }
 
-func (s ValueSegment) NextBlock() uint32 {
+func (s ValueSegment) NextSegment() uint32 {
 	return capnp.Struct(s).Uint32(0)
 }
 
-func (s ValueSegment) SetNextBlock(v uint32) {
+func (s ValueSegment) SetNextSegment(v uint32) {
 	capnp.Struct(s).SetUint32(0, v)
 }
 
@@ -843,65 +843,274 @@ func (p TrieRootOrValue_value_Future) Value() Value_Future {
 	return Value_Future{Future: p.Future.Field(0, nil)}
 }
 
-const schema_a21abfe7a0a832e0 = "x\xda\x8cTOh#U\x1c\xfe}\xefM6Ym" +
-	"l\x86)*\xaekqQq\x17[\x9a\xb8\xeanA" +
-	"\xb6\x7f\xb5\x91\xd6\xe6\xb5M\xf1\xe0%M^\xda\xb4\xd3" +
-	"\x99\x98NjQ1\xe0\xc1C\xd1\x9b\x87V\x10\xb4P" +
-	"PD\x8a\xf5\xe6\xc1b=y\xd0\x8b\xe0\xa1\xa7\xe2\xa5" +
-	"\x07A\x8b\x1eD\xc4\x8c\xbc\x99Lf\xcc\xe6\xd0\x9c\x1e" +
-	"\xbf|\xbf\xf7}\xf3}\xbf\xdf\x1b:\xc3\x88\x96N6" +
-	"4b\xe2f\xec\x92;\xf1\xec\x0e\xfff\xf5\xf3\x1d\x12" +
-	"\xf7\x02\xeei\xe6\xd3\x8f\xcf\x8e\x1e\xda\xa3\x18\xe2D\xc6" +
-	"\xe3\xec\xc4H3u\x1a`w\x08\xee\xdf?\xe5\xbf\x1e" +
-	"\xff\xf3\x8f\x1d\x12)\xe0\xf7\xaf\xde\x7f\xe4t=\xf6\x8f" +
-	"\x0fM\xb3C\xe3\xb6\x07}\xc6\x83\xbe\xfd\xc1\xb7\xdbo" +
-	"\xcd\x9a\xbb]\xef\xbd\xcd\x8e\x8dQ\x0f\xfc<{\x9d\xe0" +
-	"\x1e\xbf\xdbx\xf4\xc7\xe6\xd4\x87]\xc1\x1f\xb1mc\xdf" +
-	"\x03\x7f\xe2\x81\xf1\xe0\xd1\xf9\xee\x0b\xdf\x1f\x92\xb8\x1f\x11" +
-	"Iy\xc4\xc1\x89\x0c\xf0_\x08F\x8c\x1f\x10\xdc\x17\x1b" +
-	"\xf9\xefN\x1e.\xff\xf6?\xbdy\xee\x03\xf7\xf9!\xc1" +
-	"\xd8\xf7\x80\xef\xfd\xda\xbc\xf2\xc3sO\x9c\x93\xb8\x02\x84" +
-	"\x9e\xa8;\x19\xd1\xd3\xa3\xda= \x18YM\xf1\xdfz" +
-	"\xf3<\xb1\xf2\xf3\xd4_J,\xeb\x14\xfb\x99\xb6g|" +
-	"\xa9\xa9\xd3\x17\xda\x01\xb59;\xbe\x8b+\xc0d\xec\x1d" +
-	"#\x1b{\x80\xc8\x10\xb1\x03\x1ap-\xbb$\x07\x8b\x85" +
-	"*\xb3\xaa\xc3\x0b\xb5\x8a\x9c\xb3mg\xb6\xb6X0y" +
-	"]\xe6\x00\xa1q\x8d\x08\x11\xadz2C\xac\x7f\xb3`" +
-	"\xd6e\xbb\x19Vu\xf8eu\xee\x1f_\xa9\x98\xa5h" +
-	"_\xdb\xb7n}\x8atQU\xe6\xe5\xf2\xba\xb4\x1cR" +
-	"\x9d\x09\xd5\xa9\x81H\xbf~\x83H<\xc6!\x86\x18\x80" +
-	">\xa8\xda\xc0\x1c\x91x\x8aC\xdcb\xe8-\x15\x9c\x02" +
-	"\x92\xc4\x90$\xb8\x96\xdcr\xc6L\xbbHXC\x82\x18" +
-	"\x12\xaa\x16\x11\xe8\x11\xd1E(V#\x14\x1b\x957$" +
-	".\x13\xc3e\x82[\xae\xd46\x9cy\xb9L\xbdJ-" +
-	"R\xe1\xbc\x11\x90\x8a\xf0\xb1\xc0\x10\xcf\x8f\xc1\xcdB\xdc" +
-	"\xacK\xd1\xc3\xb5\x1e\xd7\xf5x'\xaf\x11\x89\x11\x0e1" +
-	"\xcd\x90D\xd3\xf5\x99\xb3/\x11\x89)\x0e\xb1\xc0p\x95" +
-	"\xfd\xeb\xa2O\x0d\x82.T9\xc7!^e\x88[\x15" +
-	"\x93.\xb9r}I\x96J\xb2DDH\x05y\xb7D" +
-	",\x99vqmN\x96\xd5\x7f\xdd\x8c\xf0\x93\xf2\x92h" +
-	"I\xf2\xd9\xa3\x9a\xae\xa2\x19\xb0g\xc7\x88\xc4\x04\x87\xc8" +
-	"\xb5Eq\"}F\x89\x9a\xe6\x10\xaf\x04\xa2\x1aE\xdb" +
-	"r|_\xda\xb3|\x01I\xbcs\xf2\xearp\xd3\xcf" +
-	"J\x05\x158v]\xf1=\xc9!nF\x1dKg\xc2" +
-	"\xac\\\xa7u\x8bgJ\xb81\xbe\x06\xff\x83\x91\x0a\xd7" +
-	"\xbe#3\x04:\xe2\xb6\xed\xa8)\xe9iO\xc9d&" +
-	"tF\x0f\xc6${-\xf4\x05\xcc\xf7j\xe6F\x18`" +
-	"\x7f\xd1\xae[N0;\xf1\x0d\xf9Zp\xeeU\x94w" +
-	"\xc5\xd6\x19\x11\x09-\xfa\xd2\xe8\xc8\xf8\xdb\x15\xd55\x1c" +
-	"\xeaR\xbf\xf0\xe9\xd1\xb3\x19b:c}\xd0\x94K\xca" +
-	"\xbb!\x1fw\xa7Z\x93\xe5\xcaV\xb06\xad\x8d,\xaa" +
-	"\x9bk\xd2R\xd6\xddG\xc8q \x15r\x13T\xf1\xbf" +
-	"\x00\x00\x00\xff\xff7\x9b\x81\xd2"
+type FreeBlock capnp.Struct
+
+// FreeBlock_TypeID is the unique identifier for the type FreeBlock.
+const FreeBlock_TypeID = 0x80d72bb581ca14aa
+
+func NewFreeBlock(s *capnp.Segment) (FreeBlock, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 8, PointerCount: 0})
+	return FreeBlock(st), err
+}
+
+func NewRootFreeBlock(s *capnp.Segment) (FreeBlock, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 8, PointerCount: 0})
+	return FreeBlock(st), err
+}
+
+func ReadRootFreeBlock(msg *capnp.Message) (FreeBlock, error) {
+	root, err := msg.Root()
+	return FreeBlock(root.Struct()), err
+}
+
+func (s FreeBlock) String() string {
+	str, _ := text.Marshal(0x80d72bb581ca14aa, capnp.Struct(s))
+	return str
+}
+
+func (s FreeBlock) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (FreeBlock) DecodeFromPtr(p capnp.Ptr) FreeBlock {
+	return FreeBlock(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s FreeBlock) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s FreeBlock) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s FreeBlock) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s FreeBlock) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+func (s FreeBlock) Next() uint32 {
+	return capnp.Struct(s).Uint32(0)
+}
+
+func (s FreeBlock) SetNext(v uint32) {
+	capnp.Struct(s).SetUint32(0, v)
+}
+
+// FreeBlock_List is a list of FreeBlock.
+type FreeBlock_List = capnp.StructList[FreeBlock]
+
+// NewFreeBlock creates a new list of FreeBlock.
+func NewFreeBlock_List(s *capnp.Segment, sz int32) (FreeBlock_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 8, PointerCount: 0}, sz)
+	return capnp.StructList[FreeBlock](l), err
+}
+
+// FreeBlock_Future is a wrapper for a FreeBlock promised by a client call.
+type FreeBlock_Future struct{ *capnp.Future }
+
+func (f FreeBlock_Future) Struct() (FreeBlock, error) {
+	p, err := f.Future.Ptr()
+	return FreeBlock(p.Struct()), err
+}
+
+type Database capnp.Struct
+
+// Database_TypeID is the unique identifier for the type Database.
+const Database_TypeID = 0x9a555bb3a53cb4f2
+
+func NewDatabase(s *capnp.Segment) (Database, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 8, PointerCount: 2})
+	return Database(st), err
+}
+
+func NewRootDatabase(s *capnp.Segment) (Database, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 8, PointerCount: 2})
+	return Database(st), err
+}
+
+func ReadRootDatabase(msg *capnp.Message) (Database, error) {
+	root, err := msg.Root()
+	return Database(root.Struct()), err
+}
+
+func (s Database) String() string {
+	str, _ := text.Marshal(0x9a555bb3a53cb4f2, capnp.Struct(s))
+	return str
+}
+
+func (s Database) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (Database) DecodeFromPtr(p capnp.Ptr) Database {
+	return Database(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s Database) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s Database) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s Database) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s Database) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+func (s Database) FirstFreeBlock() (FreeBlock, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return FreeBlock(p.Struct()), err
+}
+
+func (s Database) HasFirstFreeBlock() bool {
+	return capnp.Struct(s).HasPtr(0)
+}
+
+func (s Database) SetFirstFreeBlock(v FreeBlock) error {
+	return capnp.Struct(s).SetPtr(0, capnp.Struct(v).ToPtr())
+}
+
+// NewFirstFreeBlock sets the firstFreeBlock field to a newly
+// allocated FreeBlock struct, preferring placement in s's segment.
+func (s Database) NewFirstFreeBlock() (FreeBlock, error) {
+	ss, err := NewFreeBlock(capnp.Struct(s).Segment())
+	if err != nil {
+		return FreeBlock{}, err
+	}
+	err = capnp.Struct(s).SetPtr(0, capnp.Struct(ss).ToPtr())
+	return ss, err
+}
+
+func (s Database) NextUnallocatedBlock() uint32 {
+	return capnp.Struct(s).Uint32(0)
+}
+
+func (s Database) SetNextUnallocatedBlock(v uint32) {
+	capnp.Struct(s).SetUint32(0, v)
+}
+
+func (s Database) Root() (TrieRootOrValue, error) {
+	p, err := capnp.Struct(s).Ptr(1)
+	return TrieRootOrValue(p.Struct()), err
+}
+
+func (s Database) HasRoot() bool {
+	return capnp.Struct(s).HasPtr(1)
+}
+
+func (s Database) SetRoot(v TrieRootOrValue) error {
+	return capnp.Struct(s).SetPtr(1, capnp.Struct(v).ToPtr())
+}
+
+// NewRoot sets the root field to a newly
+// allocated TrieRootOrValue struct, preferring placement in s's segment.
+func (s Database) NewRoot() (TrieRootOrValue, error) {
+	ss, err := NewTrieRootOrValue(capnp.Struct(s).Segment())
+	if err != nil {
+		return TrieRootOrValue{}, err
+	}
+	err = capnp.Struct(s).SetPtr(1, capnp.Struct(ss).ToPtr())
+	return ss, err
+}
+
+// Database_List is a list of Database.
+type Database_List = capnp.StructList[Database]
+
+// NewDatabase creates a new list of Database.
+func NewDatabase_List(s *capnp.Segment, sz int32) (Database_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 8, PointerCount: 2}, sz)
+	return capnp.StructList[Database](l), err
+}
+
+// Database_Future is a wrapper for a Database promised by a client call.
+type Database_Future struct{ *capnp.Future }
+
+func (f Database_Future) Struct() (Database, error) {
+	p, err := f.Future.Ptr()
+	return Database(p.Struct()), err
+}
+func (p Database_Future) FirstFreeBlock() FreeBlock_Future {
+	return FreeBlock_Future{Future: p.Future.Field(0, nil)}
+}
+func (p Database_Future) Root() TrieRootOrValue_Future {
+	return TrieRootOrValue_Future{Future: p.Future.Field(1, nil)}
+}
+
+const schema_a21abfe7a0a832e0 = "x\xda\x8cT]h\x1cU\x14>\xe7\xde\x99\x9d\xadv" +
+	"\xdd\x1df\xf1\xaf\xc6\xd0\xa2b\xaa\x8d\xe9*ZB!" +
+	"%\x8d1)\xad\xcd\xad\xd9\xa2\xe8\x83\x93\xdd\x1b\xbbu" +
+	"v&\xce\xce\xc6\xa5Zc\x84\xfaP\xf4\xcd\x87\xd4'" +
+	"\x0d\x08\x1a)\xc1\xd4<(h\xb1>E\xa8 \xa2B" +
+	"\x9f\x8a/>\x08\x1a\xea\x83\x88\xb8#gfgg2" +
+	"Y\xc4}\xba\xcc~\xf7|\xdf\xf9\xcew\xcf\xd08;" +
+	"\xa4\xec\xcf=\xa4\x02\x13\x07\xd5\x8c\xbfR\xfcfq\xfd" +
+	"\x81\x9f^\x07q3\xa2\x7f\xbd\xf4\xe1{\xbf\\\xbes" +
+	"\x19\x14\x0d\xc08\xcbV\x8cs\x8cN\x8bl\x04\xd0\x1f" +
+	"{t\x89\x7fy\xfa\xe3\xa5\x14VE\x82\xbc\xcf\xae\x19" +
+	"\x17\x03\xf0G\x01\xf8\xaf\xef\xcb\x9f\x1f\xfe\xe3\xc6\x12\x88" +
+	"\x02\xe2\xef\x97\xde\xbe\xfbz]\xfd;\x84^dk\xc6" +
+	"z\x00\xfd$\x80\xbe\xf6\xceW\xe7_=n]\xe8Y" +
+	"w\x9d]1\xbe\x08\xc0\x9f\xb1\x97\x01\xfd+o.\xec" +
+	"\xfe\xb6=\xf1nO\xf0\x1d\xfc\xbc\xb1\x9b\xd3\xa9\x8f\x13" +
+	"\xf8\xc6\xa7\x07?\xb8\xf4ly\x1b8\xa8w\x96/\x1b" +
+	"\xe7\x02\xf0\"_\x05\xf4\xf1\xf6\xcb\x9b\x17\xc67\xd6@" +
+	"\xdc\x8a\x09\xfde\xd4\x90\x03\x18\xf7*?\x03\x1a\x03\x0a" +
+	"A\x9fX(\x7f}\xed\xae\xd9\xdf\xb64W\xe6!p" +
+	"CY\x0346\x02\xe0[\xbf\xb6w]}\xec\xbeM" +
+	"\x10\xbb0a \xd5d\x00\x0fK\xf5&\x044\xea*" +
+	"\x89=\xf0\xcaf\xf6\xd4\x8f\x13\x7f\x92X\x96\xee\xec\xaa" +
+	"\xbal\xfc\xa0\xd2\xe9;u\x15\xba\x9c\xa9\xbe\x82nj" +
+	"\x997\x8cz\xe66\x00\xa3\x99Y\x85}\xbe\xedT\xe5" +
+	"`\xc5\x9cC{nx\xdc\x95r4o9\x95\x17\xa7" +
+	"\x10\x85\xc2\x15\x00\x05\x01\xf4\xdc^\x00\x91\xe5(\x8a\x0c" +
+	"\xf3\xb6ly\x98\x05\x86Y\xc0\xeemf\xcf\x0dO\xbb" +
+	"5y\xc2q\xbc\xe3\xeeI\xd3\xe2M\xd9\xad\x81\x89N" +
+	"\xf5\\\x09X\xff\xbci5\xe5\x16\xea'\xe9\xdc\x7f\xf8" +
+	"T\xcd\xaa&\xefu]\xefu\x8fHO\xd2\x97\xa7\xe4" +
+	"\x0bui{@7\xb3]\xd5\x03\xa4\xfa\x1e\x8eb\x88" +
+	"!b\x11\xe9\xdb\xbe\x19\x00\xf1 Gq\x80a\xbej" +
+	"z&\xe6\x80a\x8e:\x91-\x8f\xea\x80&\xed\xed\xfd" +
+	"aD\x05\xff\x87\xe4t\x82\xa4Q;#q\x070\xdc" +
+	"\x01\xe8\xcf\xd6\xdc\x06\xb1@\x9e\xf4b!\x0e7 \x16" +
+	"R|c\xa6g\xcehf#0rg\x97\xf1\xf13" +
+	"\x00b\x8c\xa3\x98\x8a\x19\x8f\xad\x00\x88)\x8e\xe29\x86" +
+	":\xc3\"\xc5G\x7f\x86\xa4Ms\x14\xcf\xb3\x0e\xf3\xb8" +
+	"+aD\x8e\xd2\x80\xb1\x10?\xee\x88[\xb6\xbc\xb2m" +
+	"Zh9\x15\xd3\x93\xd50\x09\x91\x15y\xd7qHq" +
+	"7\xa5)\xc5,\x1ab0\xc3\xc1yS\xb3\x9a\x92d" +
+	"\xef\xf4\xfdP\xf7\x1e\x00q\x88\xa38\xca0\x87m?" +
+	"T>y\x04@Lp\x14\xd3\x0c\xfb\xd8?~G\xbb" +
+	"8\x127\xa4\xd95\x0b2\xbe\xac\xcf\xc8jUV\x01" +
+	"\x00\x0bQ\xc2;\"fH\xe9\x099K\xff\xf5\x1a]" +
+	"\x98\xae =\x1dI!{RS\x1f\xb6#\xf6\xc9\xd1" +
+	"\xd8\xe2\x8e(N.\x93\xa8\xa3\x1c\xc5\xd3\x91\xa8\x85\x8a" +
+	"c{\xe1$\xd3\xbe\xfc\x97$\x9e~-M98\x1f" +
+	"\xa6\x8b\xa2\x1596@|\xf7s\x14\x8f$\x1d\xdb_" +
+	"\x8a\xd3\xe5{\x9d*\x81)\xf1\x8e\x085\x84\x0dc!" +
+	"\xde\x8a=R\x16\xe8\xd0\x1c\xc7K\xa5\xac\x14;\xa3G" +
+	"1\x9b\xdc\x93\x88\x1e\x0b\xbd:\xb67\x1e`\x7f\xc5i" +
+	"\xda^\x94v\xad!_\x8a\xcey\xa2\xdc6\xb6\xf4\x88" +
+	"@(\xc9\xdd\xaac)\xdc\x08I]\xc3\xb1.\xfa\xc5" +
+	"\xcbV\x9f,\x01\xd3\x19+\xa2B.\x91wC!n" +
+	"d\xce\x95\xb3\xb5V\xf4\xd4;[\xa4B\x95]i\x93" +
+	"u\xb7\x00Nq\xc4B\xcc\x0dH\x1f\xff\x0d\x00\x00\xff" +
+	"\xff+I\xdb\x10"
 
 func RegisterSchema(reg *schemas.Registry) {
 	reg.Register(&schemas.Schema{
 		String: schema_a21abfe7a0a832e0,
 		Nodes: []uint64{
+			0x80d72bb581ca14aa,
 			0x98ab6abe03983644,
 			0x98f2f343ba55d3f9,
 			0x996c4f7c8ac1947e,
 			0x9a48fece217f86c2,
+			0x9a555bb3a53cb4f2,
 			0xb2c94699f0bf1801,
 			0xee661cdac3557f47,
 			0xf02637cd1bfeeb8c,

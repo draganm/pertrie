@@ -30,7 +30,7 @@ struct TrieRoot {
 
 struct ValueSegment {
     data @0 :Data;
-    nextBlock @1 :UInt32;
+    nextSegment @1 :UInt32;
 }
 
 struct Value {
@@ -43,4 +43,14 @@ struct TrieRootOrValue {
         trieRoot @0 :TrieRoot;
         value @1 :Value;
     }  
+}
+
+struct FreeBlock {
+    next @0 :UInt32;
+}
+
+struct Database {
+    firstFreeBlock @0 :FreeBlock;
+    nextUnallocatedBlock @1 :UInt32;
+    root @2 :TrieRootOrValue;
 }
