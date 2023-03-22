@@ -4,12 +4,18 @@ $Go.package("trie");
 $Go.import("trie/node");
 
 struct Node {
-    prefix @0 :Data;
+    prefix @0 :Prefix;
     value :union {
         nil @1 :Void;
         content @2 :TrieRootOrValue;
         blockRef @3 :UInt32;
     }
+
+    struct Prefix {
+        data @0 :Data;
+        lastByteIsHalfByte @1 :Bool;
+    }
+
 
     children @4 :List(Child);
 
@@ -21,6 +27,7 @@ struct Node {
         }
     }
 }
+
 
 struct TrieRoot {
     count @0 :UInt64;

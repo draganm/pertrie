@@ -21,7 +21,10 @@ func TestNode(t *testing.T) {
 		node, err := trie.NewRootNode(seg)
 		require.NoError(err)
 
-		err = node.SetPrefix([]byte("foo"))
+		prefix, err := node.NewPrefix()
+		require.NoError(err)
+
+		err = prefix.SetData([]byte("foo"))
 		require.NoError(err)
 
 		ncl, err := trie.NewNode_Child_List(seg, 16)
@@ -42,7 +45,7 @@ func TestNode(t *testing.T) {
 		d, err = msg.Marshal()
 		require.NoError(err)
 	}
-	require.Equal(576, len(d))
+	require.Equal(592, len(d))
 
 	msg, err := capnp.Unmarshal(d)
 	require.NoError(err)
@@ -51,6 +54,9 @@ func TestNode(t *testing.T) {
 	require.NoError(err)
 	pref, err := node.Prefix()
 	require.NoError(err)
-	require.Equal(string(pref), "foo")
+	prefData, err := pref.Data()
+	require.NoError(err)
+
+	require.Equal(string(prefData), "foo")
 
 }
