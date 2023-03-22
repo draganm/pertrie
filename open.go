@@ -1,6 +1,7 @@
 package pertrie
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"syscall"
@@ -137,6 +138,18 @@ func (d *DB) mmap() error {
 
 	d.mapped = b
 	return nil
+}
+
+var noSuchBlock = errors.New("block unknown")
+
+func (d *DB) getBlock(id uint32) ([]byte, error) {
+	offset := int(id) * pageSize
+
+	if len(d.mapped) < offset+pageSize {
+		return nil, noSuchBlock
+	}
+
+	return d.mapped[offset : offset+pageSize], nil
 }
 
 func Open(name string, mode os.FileMode) (*DB, error) {

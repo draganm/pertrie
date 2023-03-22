@@ -116,7 +116,8 @@ func InitializeScenario(ctx *godog.ScenarioContext) {
 	ctx.Step(`^an empty database$`, anEmptyDatabase)
 	ctx.Step(`^I get the size of the root$`, iGetTheSizeOfTheRoot)
 	ctx.Step(`^the size should be (\d+)$`, theSizeShouldBe)
-
+	ctx.Step(`^I insert a value into the root trie$`, iInsertAValueIntoTheRootTrie)
+	ctx.Step(`^the size of the root trie should be (\d+)$`, theSizeOfTheRootTrieShouldBe)
 }
 
 func getState(ctx context.Context) *State {
@@ -143,4 +144,15 @@ func theSizeShouldBe(ctx context.Context, expected int64) error {
 		return fmt.Errorf("expected size to be %d, but was %d", expected, s.lastSize)
 	}
 	return nil
+}
+
+func iInsertAValueIntoTheRootTrie(ctx context.Context) error {
+	s := getState(ctx)
+	return s.db.Write(func(t pertrie.Trie) error {
+		return t.Put([]byte("foo"), []byte("bar"))
+	})
+}
+
+func theSizeOfTheRootTrieShouldBe(arg1 int) error {
+	return godog.ErrPending
 }
