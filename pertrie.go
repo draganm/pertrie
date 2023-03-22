@@ -1,6 +1,7 @@
 package pertrie
 
 type Trie interface {
+	Size() uint64
 	Get(key []byte) (TrieOrData, error)
 	Put(key, data []byte) error
 	Delete(key []byte) error

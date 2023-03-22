@@ -71,7 +71,8 @@ func createTestDatabase(ctx context.Context) (*pertrie.DB, error) {
 }
 
 type State struct {
-	db *pertrie.DB
+	db       *pertrie.DB
+	lastSize uint64
 }
 
 type StateKeyType string
@@ -127,10 +128,19 @@ func anEmptyDatabase() error {
 	return nil
 }
 
-func iGetTheSizeOfTheRoot() error {
-	return godog.ErrPending
+func iGetTheSizeOfTheRoot(ctx context.Context) error {
+	s := getState(ctx)
+
+	return s.db.Write(func(t pertrie.Trie) error {
+		s.lastSize = t.Size()
+		return nil
+	})
 }
 
-func theSizeShouldBe(arg1 int) error {
-	return godog.ErrPending
+func theSizeShouldBe(ctx context.Context, expected int64) error {
+	s := getState(ctx)
+	if s.lastSize != uint64(expected) {
+		return fmt.Errorf("expected size to be %d, but was %d", expected, s.lastSize)
+	}
+	return nil
 }
